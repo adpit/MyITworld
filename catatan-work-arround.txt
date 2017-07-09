@@ -1,3 +1,31 @@
+# cara untuk FSCK disk yang readonly dengan format FAT32 https://askubuntu.com/questions/147228/how-to-repair-a-corrupted-fat32-file-system
+
+cara satu :
+# sudo dosfsck -w -r -l -a -v -t /dev/sdc1
+
+cara dua:
+# sudo apt-get install dosfstools
+# sudo umount /dev/sdb1
+# sudo dosfsck -t -a -w /dev/sdb1
+
+* if receive the following error, when your USB flash drive is not recognized:
+
+Error: Buffer I/O error on device sdb1
+
+Run this command:
+
+dmesg|tail
+
+If the output is:
+
+end_request: I/O error, dev sdb1, sector 0
+Buffer I/O error on device sdb1, logical block 0
+
+Run this command:
+
+sudo dosfsck -t -a /dev/sdb1
+
+
 # ini adalah contoh untuk encoode file php yang berhasil, yang menarik adalah encodenya mengunakan hexdecoder bukan phpdecoder?
 http://ddecode.com/hexdecoder/?results=ad44e46d8aad211f65cbc8bf2925a2d2
 
